@@ -17,30 +17,17 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Convertir l'icône PNG en ICNS
-        run: |
-          mkdir MyCompta.iconset
-          sips -z 16 16     amix.png --out MyCompta.iconset/icon_16x16.png
-          sips -z 32 32     amix.png --out MyCompta.iconset/icon_16x16@2x.png
-          sips -z 32 32     amix.png --out MyCompta.iconset/icon_32x32.png
-          sips -z 64 64     amix.png --out MyCompta.iconset/icon_32x32@2x.png
-          sips -z 128 128   amix.png --out MyCompta.iconset/icon_128x128.png
-          sips -z 256 256   amix.png --out MyCompta.iconset/icon_128x128@2x.png
-          sips -z 256 256   amix.png --out MyCompta.iconset/icon_256x256.png
-          sips -z 512 512   amix.png --out MyCompta.iconset/icon_256x256@2x.png
-          sips -z 512 512   amix.png --out MyCompta.iconset/icon_512x512.png
-          iconutil -c icns MyCompta.iconset -o amix.icns
-
+      # ⭐ ÉTAPE CLÉ : on travaille depuis build/
       - name: Créer l'app macOS avec jpackage
+        working-directory: build
         run: |
           jpackage \
             --input . \
-            --dest ./output \
+            --dest ../output \
             --name "MyCompta" \
             --main-jar "MyCompta.jar" \
             --main-class "MyComptaApp.main" \
             --type app-image \
-            --icon "amix.icns" \
             --app-version "1.0.0" \
             --vendor "AMIX Groupe"
 
