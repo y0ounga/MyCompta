@@ -1,0 +1,22 @@
+﻿# Build
+/build/
+/out/
+/bin/
+/target/
+
+# Eclipse
+.settings/
+.project
+.classpath
+
+# Système
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+hs_err_pid*
+
+# Base de données locale (ne pas versionner)
+mycompta.db
+*.sqlite
