@@ -5,19 +5,19 @@ on:
 
 jobs:
   build-macos:
-    # ⭐ macOS 13 (Ventura) → compatible avec les vieux macOS
-    runs-on: macos-13
+    # ⭐ macOS 12 (Monterey) sur GitHub Actions
+    runs-on: macos-12
 
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v4
 
-      # ⭐ Java 17.0.9 → dernière version supportant macOS 10.15
+      # ⭐ Java 17 LTS (dernière version stable compatible Monterey)
       - name: Configurer Java 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17.0.9'
+          java-version: '17'
 
       - name: Créer l'app macOS avec jpackage
         working-directory: build
