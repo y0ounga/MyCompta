@@ -5,19 +5,20 @@ on:
 
 jobs:
   build-macos:
-    runs-on: macos-latest
+    # ⭐ macOS 13 (Ventura) → compatible avec les vieux macOS
+    runs-on: macos-13
 
     steps:
       - name: Récupérer le code
         uses: actions/checkout@v4
 
+      # ⭐ Java 17.0.9 → dernière version supportant macOS 10.15
       - name: Configurer Java 17
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '17.0.9'
 
-      # ⭐ ÉTAPE CLÉ : on travaille depuis build/
       - name: Créer l'app macOS avec jpackage
         working-directory: build
         run: |
